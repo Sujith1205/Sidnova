@@ -1,5 +1,16 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ?? "";
 
+function apiRequest(path: string, init?: RequestInit) {
+  return fetch(`${API_BASE_URL}${path}`, init);
+}
+
+function adminRequest(path: string, init?: RequestInit) {
+  return fetch(`${API_BASE_URL}${path}`, {
+    ...init,
+    credentials: "include",
+  });
+}
+
 export interface TeamMemberPayload {
   name: string;
   hallTicketNumber: string;
@@ -59,7 +70,7 @@ export class ApiError extends Error {
 }
 
 export async function submitRegistration(payload: RegistrationPayload) {
-  const response = await fetch(`${API_BASE_URL}/api/registrations/`, {
+  const response = await apiRequest(`/api/registrations/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +87,7 @@ export async function submitRegistration(payload: RegistrationPayload) {
 }
 
 export async function adminLogin(password: string) {
-  const response = await fetch(`${API_BASE_URL}/api/admin/login/`, {
+  const response = await adminRequest(`/api/admin/login/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -93,7 +104,7 @@ export async function adminLogin(password: string) {
 }
 
 export async function adminLogout() {
-  const response = await fetch(`${API_BASE_URL}/api/admin/logout/`, {
+  const response = await adminRequest(`/api/admin/logout/`, {
     method: "POST",
   });
 
@@ -106,7 +117,7 @@ export async function adminLogout() {
 }
 
 export async function getAdminSession() {
-  const response = await fetch(`${API_BASE_URL}/api/admin/session/`);
+  const response = await adminRequest(`/api/admin/session/`);
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
     throw new ApiError(data.error ?? "Unable to check admin session.", response.status);
@@ -116,7 +127,7 @@ export async function getAdminSession() {
 }
 
 export async function getAdminOverview() {
-  const response = await fetch(`${API_BASE_URL}/api/admin/overview/`);
+  const response = await adminRequest(`/api/admin/overview/`);
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
     throw new ApiError(data.error ?? "Unable to load admin overview.", response.status);
