@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: sidnova-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python manage.py migrate && python manage.py ensure_default_admin && gunicorn sidnova_backend.wsgi:application
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: sidnova-backend.onrender.com
+      - key: DJANGO_TIME_ZONE
+        value: Asia/Kolkata
+      - key: DJANGO_ADMIN_USERNAME
+        value: admin
+      - key: DJANGO_ADMIN_PASSWORD
+        value: Sidnova@2026

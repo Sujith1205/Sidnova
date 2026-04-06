@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 45% 3%;
+    --foreground: 210 40% 92%;
+
+    --card: 225 40% 7%;
+    --card-foreground: 210 40% 92%;
+
+    --popover: 225 40% 7%;
+    --popover-foreground: 210 40% 92%;
+
+    --primary: 195 100% 50%;
+    --primary-foreground: 225 45% 3%;
+
+    --secondary: 30 100% 55%;
+    --secondary-foreground: 225 45% 3%;
+
+    --muted: 225 30% 12%;
+    --muted-foreground: 215 20% 50%;
+
+    --accent: 280 70% 55%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 225 25% 14%;
+    --input: 225 25% 14%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    --neon-blue: 195 100% 50%;
+    --neon-orange: 30 100% 55%;
+    --neon-purple: 280 70% 55%;
+    --neon-magenta: 330 90% 55%;
+    --cultural-gold: 42 90% 55%;
+    --cultural-warm: 15 85% 50%;
+
+    --sidebar-background: 225 40% 5%;
+    --sidebar-foreground: 210 40% 92%;
+    --sidebar-primary: 195 100% 50%;
+    --sidebar-primary-foreground: 225 45% 3%;
+    --sidebar-accent: 225 30% 12%;
+    --sidebar-accent-foreground: 210 40% 92%;
+    --sidebar-border: 225 25% 14%;
+    --sidebar-ring: 195 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-heading {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-accent {
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 10px hsl(195 100% 50% / 0.8), 0 0 30px hsl(195 100% 50% / 0.4), 0 0 60px hsl(195 100% 50% / 0.2);
+  }
+
+  .text-glow-orange {
+    text-shadow: 0 0 10px hsl(30 100% 55% / 0.8), 0 0 30px hsl(30 100% 55% / 0.4), 0 0 60px hsl(30 100% 55% / 0.2);
+  }
+
+  .text-glow-purple {
+    text-shadow: 0 0 10px hsl(280 70% 55% / 0.8), 0 0 30px hsl(280 70% 55% / 0.4);
+  }
+
+  .glass {
+    @apply bg-card/50 backdrop-blur-2xl border border-border/40;
+  }
+
+  .glass-strong {
+    background: linear-gradient(135deg, hsl(225 40% 7% / 0.8), hsl(225 40% 10% / 0.6));
+    @apply backdrop-blur-2xl border border-border/40;
+  }
+
+  .neon-border {
+    box-shadow: 0 0 15px hsl(195 100% 50% / 0.12), inset 0 0 15px hsl(195 100% 50% / 0.04);
+  }
+
+  .neon-border-warm {
+    box-shadow: 0 0 15px hsl(30 100% 55% / 0.12), inset 0 0 15px hsl(30 100% 55% / 0.04);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(195 100% 50%), hsl(280 70% 55%), hsl(30 100% 55%));
+  }
+
+  .circuit-pattern {
+    background-image:
+      linear-gradient(90deg, hsl(195 100% 50% / 0.03) 1px, transparent 1px),
+      linear-gradient(hsl(195 100% 50% / 0.03) 1px, transparent 1px),
+      radial-gradient(circle, hsl(195 100% 50% / 0.06) 1px, transparent 1px);
+    background-size: 60px 60px, 60px 60px, 30px 30px;
+    background-position: 0 0, 0 0, 15px 15px;
+  }
+
+  .hex-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2300c8ff' fill-opacity='0.03'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
