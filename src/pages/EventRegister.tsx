@@ -304,13 +304,14 @@ const EventRegister = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   You&apos;ll be redirected to the official Hackathon WhatsApp group in {redirectCountdown} seconds.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => window.open(HACKATHON_WHATSAPP_URL, "_blank", "noopener,noreferrer")}
+                <a
+                  href={HACKATHON_WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-accent font-bold text-sm uppercase tracking-wider bg-primary text-primary-foreground hover:bg-primary/90 transition-all"
                 >
                   Join Hackathon WhatsApp Group
-                </button>
+                </a>
               </div>
               <p className="text-xs text-muted-foreground">If the redirect is blocked, use the button above to open the group directly.</p>
             </div>
