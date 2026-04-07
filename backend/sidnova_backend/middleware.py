@@ -1,6 +1,6 @@
 import os
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 
 def _allowed_origins() -> set[str]:
@@ -9,6 +9,27 @@ def _allowed_origins() -> set[str]:
         "http://127.0.0.1:8080,http://localhost:8080,http://127.0.0.1:8000,http://localhost:8000,https://sidnova.vercel.app",
     )
     return {origin.strip() for origin in configured.split(",") if origin.strip()}
+
+
+def _healthcheck_paths() -> set[str]:
+    configured = os.getenv("DJANGO_HEALTHCHECK_PATHS", "/api/health/")
+    return {path.strip() for path in configured.split(",") if path.strip()}
+
+
+class HealthcheckBypassMiddleware:
+    """
+    Returns a simple 200 response for healthcheck endpoints before host validation,
+    SSL redirect, or any other middleware can interfere with platform probes.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path in _healthcheck_paths():
+            return JsonResponse({"status": "ok"})
+
+        return self.get_response(request)
 
 
 class ExplicitCorsMiddleware:
