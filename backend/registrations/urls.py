@@ -8,10 +8,12 @@ from .views import (
     admin_registrations_overview,
     admin_session,
     events_list,
+    health_check,
     submit_registration,
 )
 
 urlpatterns = [
+    path("health/", health_check, name="health-check"),
     path("events/", events_list, name="events-list"),
     path("registrations/", submit_registration, name="submit-registration"),
     path("admin/login/", admin_login, name="admin-login"),

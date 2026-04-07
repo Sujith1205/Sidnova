@@ -28,21 +28,39 @@ VITE_API_BASE_URL=http://127.0.0.1:8000
 - Bootstrap admin password login: `python backend/manage.py ensure_default_admin`
 - Start server: `python backend/manage.py runserver`
 
-## Render deployment
+## Railway deployment
 
-The included [render.yaml](c:\Users\Ajay\Desktop\Sidnova\render.yaml) provisions:
+Deploy the Django backend to Railway from the `backend` folder. The included [backend/railway.toml](c:\Users\Ajay\Desktop\Sidnova\backend\railway.toml) sets:
 
-- a static frontend service named `sidnova-frontend`
-- a PostgreSQL database named `sidnova-postgres`
-- a Python web service for the Django backend
-- automatic `DATABASE_URL` injection from Render into Django
+- `gunicorn` as the runtime server
+- migrations + admin bootstrap before deploy
+- health checks at `/api/health/`
 
-On Render:
+Recommended Railway setup:
 
-1. Create a new Blueprint deployment from this repository.
-2. Render will create the frontend, Postgres database, and backend service from `render.yaml`.
-3. The backend startup command will run migrations and bootstrap the admin account automatically.
-4. The frontend will build with `VITE_API_BASE_URL` pointing to the Render backend URL.
+1. Create a PostgreSQL database service in Railway.
+2. Create a backend service from this repository and set the root directory to `backend`.
+3. Set these Railway variables:
+
+```env
+DATABASE_URL=<Railway Postgres connection string>
+DJANGO_SECRET_KEY=<generate a strong secret>
+DJANGO_DEBUG=False
+DJANGO_ALLOWED_HOSTS=<your railway backend domain>
+DJANGO_CORS_ALLOWED_ORIGINS=https://sidnova.vercel.app
+DJANGO_CSRF_TRUSTED_ORIGINS=https://sidnova.vercel.app,https://<your railway backend domain>
+DJANGO_TIME_ZONE=Asia/Kolkata
+DJANGO_ADMIN_USERNAME=admin
+DJANGO_ADMIN_PASSWORD=Sidnova@2026
+DJANGO_SESSION_COOKIE_SAMESITE=None
+DJANGO_CSRF_COOKIE_SAMESITE=None
+```
+
+4. In Vercel set:
+
+```env
+VITE_API_BASE_URL=https://<your railway backend domain>
+```
 
 Default admin dashboard access:
 

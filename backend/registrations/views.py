@@ -109,6 +109,11 @@ def events_list(request: HttpRequest) -> JsonResponse:
     return JsonResponse({"events": [serialize_event(event) for event in events]})
 
 
+@require_GET
+def health_check(request: HttpRequest) -> JsonResponse:
+    return JsonResponse({"status": "ok"})
+
+
 @csrf_exempt
 @require_POST
 def admin_login(request: HttpRequest) -> JsonResponse:
