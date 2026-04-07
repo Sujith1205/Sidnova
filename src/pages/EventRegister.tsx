@@ -371,7 +371,18 @@ const EventRegister = () => {
                   <MapPin className="w-4 h-4" />
                   <span className="font-accent text-xs uppercase tracking-widest">Venue</span>
                 </div>
-                <p className="text-sm text-foreground">{event.venue ?? "Venue details will be shared soon."}</p>
+                {event.venueUrl ? (
+                  <a
+                    href={event.venueUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-foreground hover:text-primary hover:underline"
+                  >
+                    {event.venue ?? "Open location"}
+                  </a>
+                ) : (
+                  <p className="text-sm text-foreground">{event.venue ?? "Venue details will be shared soon."}</p>
+                )}
               </div>
             </div>
           </div>

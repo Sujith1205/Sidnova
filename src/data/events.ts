@@ -38,6 +38,7 @@ export interface EventInfo {
   description: string;
   longDescription?: string;
   venue?: string;
+  venueUrl?: string;
   courses: string[];
   registrationEnabled?: boolean;
   image?: string;
@@ -314,6 +315,7 @@ export const eventsData: EventInfo[] = [
     time: "12:00 PM - 3:00 PM",
     eligible: "All Students",
     venue: "Siddhartha Institute of Sciences and Technology",
+    venueUrl: "https://maps.app.goo.gl/ZpQRtVA6bBKu8F1U8?g_st=aw",
     description: "A thrilling auto expo with superbikes, supercars, and special guest appearances by bikers Alex Binoy & Varsha.",
     longDescription:
       "Auto Exotica is Sidnova's high-energy auto expo experience, bringing together superbikes, supercars, and special guest riders for a live event built around design, machine culture, and campus excitement.",
@@ -331,8 +333,7 @@ export const eventsData: EventInfo[] = [
     ],
     contacts: [
       { name: "Harsha", phone: "7995210554" },
-      { name: "Shreya", phone: "8688533814" },
-      { name: "Sujith", phone: "7981536420" },
+      { name: "Ajay Rangaraju", phone: "9133536130" },
     ],
     stats: [
       { label: "Date", value: "17 April" },

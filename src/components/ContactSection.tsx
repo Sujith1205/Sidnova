@@ -2,8 +2,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const contacts = [
   { name: "Harsha Vardhan", phone: "+91 79952 10554" },
-  { name: "Shreya", phone: "+91 86885 33814" },
-  { name: "Sujith", phone: "+91 79815 36420" },
+  { name: "Ajay Rangaraju", phone: "+91 91335 36130" },
 ];
 
 const ContactSection = () => (
