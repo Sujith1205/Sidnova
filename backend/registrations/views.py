@@ -172,6 +172,17 @@ def admin_registrations_overview(request: HttpRequest) -> JsonResponse:
     return JsonResponse({"events": payload})
 
 
+@csrf_exempt
+@require_POST
+def admin_delete_registration(request: HttpRequest, registration_id: int) -> JsonResponse:
+    if not _is_admin_authenticated(request):
+        return JsonResponse({"error": "Admin authentication required."}, status=401)
+
+    registration = get_object_or_404(Registration, id=registration_id)
+    registration.delete()
+    return JsonResponse({"message": "Registration deleted successfully."})
+
+
 @require_GET
 def admin_export_event_registrations(request: HttpRequest, slug: str) -> HttpResponse:
     if not _is_admin_authenticated(request):

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Download, LogOut, ShieldCheck } from "lucide-react";
+import { Download, LogOut, ShieldCheck, Trash2 } from "lucide-react";
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -9,6 +9,7 @@ import {
   AdminEventOverview,
   adminLogin,
   adminLogout,
+  deleteAdminRegistration,
   getAdminExportUrl,
   getAdminOverview,
   getAdminSession,
@@ -18,6 +19,7 @@ const AdminDashboard = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [events, setEvents] = useState<AdminEventOverview[]>([]);
@@ -86,6 +88,28 @@ const AdminDashboard = () => {
         description: error instanceof Error ? error.message : "Please try again.",
         variant: "destructive",
       });
+    }
+  };
+
+  const handleDeleteRegistration = async (registrationId: number, participantName: string, eventTitle: string) => {
+    const confirmed = window.confirm(`Delete ${participantName}'s registration from ${eventTitle}? This cannot be undone.`);
+    if (!confirmed) {
+      return;
+    }
+
+    setDeletingId(registrationId);
+    try {
+      await deleteAdminRegistration(registrationId);
+      await loadOverview();
+      toast({ title: "Registration deleted", description: `${participantName}'s entry has been removed.` });
+    } catch (error) {
+      toast({
+        title: "Delete failed",
+        description: error instanceof Error ? error.message : "Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -194,6 +218,7 @@ const AdminDashboard = () => {
                           <th className="px-4 py-3 font-accent text-xs uppercase tracking-widest text-muted-foreground">Team</th>
                           <th className="px-4 py-3 font-accent text-xs uppercase tracking-widest text-muted-foreground">Contact</th>
                           <th className="px-4 py-3 font-accent text-xs uppercase tracking-widest text-muted-foreground">Submitted</th>
+                          <th className="px-4 py-3 font-accent text-xs uppercase tracking-widest text-muted-foreground">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -232,6 +257,19 @@ const AdminDashboard = () => {
                             </td>
                             <td className="px-4 py-4 text-muted-foreground whitespace-nowrap">
                               {new Date(registration.submittedAt).toLocaleString("en-IN")}
+                            </td>
+                            <td className="px-4 py-4">
+                              <Button
+                                type="button"
+                                variant="destructive"
+                                size="sm"
+                                onClick={() => handleDeleteRegistration(registration.id, registration.name, event.title)}
+                                disabled={deletingId === registration.id}
+                                className="gap-2"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                                {deletingId === registration.id ? "Deleting..." : "Delete"}
+                              </Button>
                             </td>
                           </tr>
                         ))}

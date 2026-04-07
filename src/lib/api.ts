@@ -133,6 +133,19 @@ export async function getAdminOverview() {
   return data as { events: AdminEventOverview[] };
 }
 
+export async function deleteAdminRegistration(registrationId: number) {
+  const response = await adminRequest(`/api/admin/registrations/${registrationId}/delete/`, {
+    method: "POST",
+  });
+
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new ApiError(data.error ?? "Unable to delete registration.", response.status);
+  }
+
+  return data as { message: string };
+}
+
 export function getAdminExportUrl(slug?: string) {
   if (!slug) {
     return `${API_BASE_URL}/api/admin/export/all/`;
