@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Zap } from "lucide-react";
 import collegePhoto from "../../images/College Photo.png";
+import mobileCollegePhoto from "../../images/Futuristic campus under neon rain.png";
 
 const targetDate = new Date("2026-04-16T09:00:00").getTime();
 
@@ -25,8 +26,12 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat md:block"
         style={{ backgroundImage: `url("${collegePhoto}")` }}
+      />
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
+        style={{ backgroundImage: `url("${mobileCollegePhoto}")` }}
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,8,23,0.5)_0%,rgba(2,8,23,0.76)_38%,rgba(1,7,18,0.92)_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(24,144,255,0.24),transparent_36%),radial-gradient(circle_at_bottom,rgba(255,149,0,0.14),transparent_30%)]" />
