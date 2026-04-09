@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Zap } from "lucide-react";
+import collegePhoto from "../../images/College Photo.png";
 
 const targetDate = new Date("2026-04-16T09:00:00").getTime();
 
@@ -23,9 +24,14 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-[hsl(225_40%_5%)] to-background" />
-      <div className="absolute inset-0 circuit-pattern" />
-      <div className="absolute inset-0 hex-pattern opacity-50" />
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url("${collegePhoto}")` }}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,8,23,0.5)_0%,rgba(2,8,23,0.76)_38%,rgba(1,7,18,0.92)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(24,144,255,0.24),transparent_36%),radial-gradient(circle_at_bottom,rgba(255,149,0,0.14),transparent_30%)]" />
+      <div className="absolute inset-0 circuit-pattern opacity-70" />
+      <div className="absolute inset-0 hex-pattern opacity-35" />
 
       <div className="absolute top-20 left-10 w-80 h-80 bg-primary/8 rounded-full blur-[140px] animate-pulse-glow" />
       <div
@@ -44,14 +50,6 @@ const HeroSection = () => {
       <div className="absolute bottom-6 right-6 w-20 h-20 border-r-2 border-b-2 border-primary/20 rounded-br-lg" />
 
       <div className="relative container text-center z-10 px-4">
-        <div className="mx-auto mb-4 max-w-[320px] overflow-hidden rounded-xl border border-white/8 bg-white/10 p-1 shadow-[0_14px_36px_rgba(0,0,0,0.18)] backdrop-blur-md md:max-w-[380px]">
-          <img
-            src="/college-banner.jpeg"
-            alt="Siddhartha Institute of Technology and Sciences banner"
-            className="w-full rounded-[10px] object-cover opacity-80 mix-blend-screen"
-          />
-        </div>
-
         <div className="inline-flex max-w-4xl flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-2xl glass border-primary/20 mb-6">
           <Zap className="w-3.5 h-3.5 text-secondary" />
           <span className="font-accent text-sm md:text-base font-semibold tracking-[0.2em] uppercase text-muted-foreground">
