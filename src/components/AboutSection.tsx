@@ -48,11 +48,11 @@ const AboutSection = () => (
 
       <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto leading-relaxed">
         Organized by the{" "}
-        <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-base font-semibold text-primary text-glow-blue">
+        <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-base font-semibold text-primary">
           Unified College Clubs Council (UCCC)
         </span>
         ,{" "}
-        <span className="inline-flex items-center rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-base font-semibold text-secondary text-glow-orange">
+        <span className="inline-flex items-center rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-base font-semibold text-secondary">
           Siddhartha Institute of Technology and Sciences
         </span>{" "}
         brings B.Tech, Diploma, B.Pharm, Pharm-D, M.Tech, MBA & MCA students together for three unforgettable days.
