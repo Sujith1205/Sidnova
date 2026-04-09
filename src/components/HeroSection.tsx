@@ -44,25 +44,19 @@ const HeroSection = () => {
       <div className="absolute bottom-6 right-6 w-20 h-20 border-r-2 border-b-2 border-primary/20 rounded-br-lg" />
 
       <div className="relative container text-center z-10 px-4">
-        <div className="mx-auto mb-4 max-w-[320px] overflow-hidden rounded-xl border border-white/10 bg-white/90 p-1 shadow-[0_14px_36px_rgba(0,0,0,0.24)] backdrop-blur-sm md:max-w-[380px]">
+        <div className="mx-auto mb-4 max-w-[320px] overflow-hidden rounded-xl border border-white/8 bg-white/10 p-1 shadow-[0_14px_36px_rgba(0,0,0,0.18)] backdrop-blur-md md:max-w-[380px]">
           <img
             src="/college-banner.jpeg"
             alt="Siddhartha Institute of Technology and Sciences banner"
-            className="w-full rounded-[10px] object-cover"
+            className="w-full rounded-[10px] object-cover opacity-80 mix-blend-screen"
           />
         </div>
 
         <div className="inline-flex max-w-4xl flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-2xl glass border-primary/20 mb-6">
           <Zap className="w-3.5 h-3.5 text-secondary" />
           <span className="font-accent text-sm md:text-base font-semibold tracking-[0.2em] uppercase text-muted-foreground">
-            <span className="rounded-full border border-primary/35 bg-primary/15 px-3 py-1 text-base md:text-lg text-primary">
-              UCCC
-            </span>{" "}
-            x{" "}
-            <span className="rounded-full border border-secondary/35 bg-secondary/15 px-3 py-1 text-sm md:text-base text-secondary">
-              Siddhartha Institute of Technology and Sciences
-            </span>{" "}
-            presents
+            <span className="text-primary">UCCC</span> x{" "}
+            <span className="text-secondary">Siddhartha Institute of Technology and Sciences</span> presents
           </span>
         </div>
 
