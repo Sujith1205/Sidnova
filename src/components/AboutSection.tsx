@@ -47,7 +47,15 @@ const AboutSection = () => (
       </div>
 
       <p className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto leading-relaxed">
-        Organized by the <span className="font-semibold text-foreground/80">Unified College Clubs Council (UCCC)</span>, SIDNOVA unites B.Tech, Diploma, B.Pharm, Pharm-D, M.Tech, MBA & MCA students for three unforgettable days.
+        Organized by the{" "}
+        <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-base font-semibold text-primary text-glow-blue">
+          Unified College Clubs Council (UCCC)
+        </span>
+        ,{" "}
+        <span className="inline-flex items-center rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-base font-semibold text-secondary text-glow-orange">
+          Siddhartha Institute of Technology and Sciences
+        </span>{" "}
+        brings B.Tech, Diploma, B.Pharm, Pharm-D, M.Tech, MBA & MCA students together for three unforgettable days.
       </p>
     </div>
   </section>
